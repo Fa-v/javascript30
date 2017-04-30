@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Css Variables and Js Javascript30</title>
+</head>
+<body>
+  <h2>Update Css Variables with <span class="h1">JS</span></h2>
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur</label>
+    <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input type="color" name="base" value="#ffc600">
+  </div>
+    <a title="By Jose Clemente OrozcoThelmadatter (Self-published work by Thelmadatter) [CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0) or GFDL (http://www.gnu.org/copyleft/fdl.html)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3AJuventudOrozcoSICDF.JPG"><img width="512" alt="JuventudOrozcoSICDF" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/JuventudOrozcoSICDF.JPG/1024px-JuventudOrozcoSICDF.JPG"/></a>
+
+  <div class="container">
+    <footer>
+      <a href="https://JavaScript30.com">30 Day Vanilla JS Challenge "03 Css variables"</a>
+    </footer>
+  </div>
+
+  <style>
+  /* declaring variables at root level, the highest level possible (equeal to html) */
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      -webkit-filter: var(--blur);
+      filter: blur(var(--blur));
+    }
+
+    .h1 {
+      color: var(--base);
+    }
+
+    body {
+      text-align: center;
+    }
+
+    body {
+      background: #193549;
+      color: white;
+      font-family: Helvetica, sans-serif, Arial;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+    .container {
+      font-family: sans-serif;
+      font-size: 16px;
+      color: white;
+      position: relative;
+      text-align: center;
+      width: 100%;
+      margin: 100px 0px 0px 0px;
+      vertical-align: bottom;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  </style>
+  
+  <script>
+    const inputs = document.querySelectorAll('.controls input');
+    
+    function updateStyles() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+      console.log(this.name);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', updateStyles));
+    inputs.forEach(input => input.addEventListener('mousemove', updateStyles));
+
+  </script>
+</body>
+</html>
